@@ -1,22 +1,22 @@
 package com.nebula.smoothie.adquotes;
 
 import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
-public class QuoteActivity extends Activity {
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+
+public class QuoteActivity extends SherlockFragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quote);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.quote, menu);
-		return true;
+		FragmentManager manager = getSupportFragmentManager();
+		FragmentTransaction ft = manager.beginTransaction();
+		ft.replace(R.id.flQuote, new QuoteFragment());
+		// or ft.add(R.id.your_placeholder, new FooFragment());
+		ft.commit();
 	}
 
 }
